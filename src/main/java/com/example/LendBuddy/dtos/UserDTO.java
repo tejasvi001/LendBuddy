@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Data
 public class UserDTO {
+    private Long id;
     @NotBlank(message = "phone number is required")
     @Pattern(regexp = "^[0-9]{10}$", message = "User's phone number must be 10 digits.")
     private String userPhone;
@@ -18,6 +19,6 @@ public class UserDTO {
     @NotBlank (message = "email is a mandatory field")
     private String userEmail;
     @NotBlank(message = "verificationcode is required")
-    @Pattern(regexp = "^[0-9]{4}$", message = "User's phone number must be 4 digits.")
+    @Pattern(regexp = "^[0-9]{4}$", message = "User's verification code must be 4 digits.")
     private String userVerificationCode;
 }
