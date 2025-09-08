@@ -11,6 +11,8 @@ import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationServiceException;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -36,7 +38,7 @@ public class AuthController {
     @PostMapping(value="/signup",produces = "application/json")
     public ResponseEntity<UserDTO> signUp(@RequestBody SignUpDTO signUpDTO){
         UserDTO userDTO=userService.signUp(signUpDTO);
-        return ResponseEntity.ok(userDTO);
+        return ResponseEntity.status(HttpStatus.CREATED).body(userDTO);
     }
 
     @PostMapping("/login")

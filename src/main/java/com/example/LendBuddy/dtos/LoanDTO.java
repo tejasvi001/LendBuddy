@@ -19,10 +19,10 @@ public class LoanDTO {
     @NotBlank(message = "Borrower's phone number cannot be blank.")
     @Pattern(regexp = "^[0-9]{10}$", message = "Borrower's phone number must be 10 digits.")
     private String borrowerPhone;
+    @NotBlank(message = "name is required")
+    private String borrowerName;
+    private Long issuerId;
 
-    @NotBlank(message = "User's phone number cannot be blank.")
-    @Pattern(regexp = "^[0-9]{10}$", message = "User's phone number must be 10 digits.")
-    private String userPhone;
 
     @NotNull(message = "Loan amount cannot be null.")
     @Positive(message = "Loan amount must be a positive value.")

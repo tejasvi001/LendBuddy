@@ -19,7 +19,8 @@ public class LoanEntity {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long loanID;
     private String borrowerPhone;
-    private String userPhone;
+    private String borrowerName;
+    private Long issuerID;
     private Double loanAmount;
     private Double interestRate;
     private Integer loanDuration;
