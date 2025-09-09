@@ -22,11 +22,20 @@ import java.util.List;
 public class WebSecurityConfig implements WebMvcConfigurer {
     private final JwtAuthFilter jwtAuthFilter;
 //    private final OAuth2SuccessHandler auth2SuccessHandler;
-    private final String[] publicRoutes={
-            "/auth/**",
-            "/error",
-            "/home.html"
-    };
+private final String[] publicRoutes = {
+        "/auth/**",
+        "/error",
+        "/home.html",
+
+        // Swagger UI & OpenAPI
+        "/swagger-ui/**",
+        "/swagger-ui.html",
+        "/v3/api-docs/**",
+
+        // Actuator
+        "/actuator/**"
+};
+
     public WebSecurityConfig(JwtAuthFilter jwtAuthFilter ){
         this.jwtAuthFilter = jwtAuthFilter;
 //        this.auth2SuccessHandler = auth2SuccessHandler;

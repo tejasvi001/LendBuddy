@@ -1,6 +1,7 @@
 package com.example.LendBuddy.advices;
 
 import com.example.LendBuddy.exceptions.ResourceNotFoundException;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
@@ -14,14 +15,22 @@ import java.util.stream.Collectors;
 @RestControllerAdvice
 public class GlobalExceptionHandler {
     @ExceptionHandler(Exception.class)
-    public ResponseEntity<APIResponse<?>> handleException(Exception e){
-        APIError apiError= APIError
-                .builder()
+    public ResponseEntity<APIResponse<?>> handleException(Exception e, HttpServletRequest request) {
+        String path = request.getRequestURI();
+
+        // ✅ Skip wrapping for swagger / openapi / actuator
+        if (path.startsWith("/v3/api-docs") || path.startsWith("/swagger-ui") || path.startsWith("/actuator")) {
+            throw new RuntimeException(e); // let Spring / Springdoc handle it
+        }
+
+        APIError apiError = APIError.builder()
                 .httpStatus(HttpStatus.INTERNAL_SERVER_ERROR)
                 .message(e.getMessage())
                 .build();
+
         return buildResponseEntity(apiError);
     }
+
     @ExceptionHandler(ResourceNotFoundException.class)
     public ResponseEntity<APIResponse<?>> handleResourceNotFoundException(ResourceNotFoundException exception){
         APIError apiError= APIError
