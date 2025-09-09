@@ -13,6 +13,10 @@ public class 	LendBuddyApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
+		System.out.println("------------------------------------------------------------------");
+		System.out.println();
 		System.out.println("The server for Lend Buddy has been started.");
+		System.out.println();
+		System.out.println("------------------------------------------------------------------");
 	}
 }

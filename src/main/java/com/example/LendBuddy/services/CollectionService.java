@@ -1,16 +1,20 @@
 package com.example.LendBuddy.services;
 
+import com.example.LendBuddy.dtos.CollectionDTO;
 import com.example.LendBuddy.repositories.CollectionRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
-@Service
-public class CollectionService {
-    private final CollectionRepository collectionRepository;
-    private  final ModelMapper modelMapper;
+import java.util.List;
 
-    public CollectionService(CollectionRepository collectionRepository, ModelMapper modelMapper) {
-        this.collectionRepository = collectionRepository;
-        this.modelMapper = modelMapper;
-    }
+
+public interface CollectionService {
+
+    CollectionDTO createCollection(CollectionDTO collectionDTO);
+
+    List<CollectionDTO> getCollectionsByLoanId(Long loanId);
+
+    CollectionDTO getCollectionById(Long id);
+
+    List<CollectionDTO> getCollectionsByIssuerId(Long id);
 }
