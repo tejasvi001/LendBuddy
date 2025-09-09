@@ -66,6 +66,17 @@ public class LoanServiceImpl implements LoanService {
         return modelMapper.map(savedLoan, LoanDTO.class);
     }
 
+    @Override
+    public void deleteLoanById(Long loanId) {
+        log.info("Attempting to delete the loan by id "+loanId);
+        if(!loanRepository.existsById(loanId)){
+            log.info("No loan present with id :"+loanId);
+            throw  new ResourceNotFoundException("No loan with id "+ loanId);
+        }
+        loanRepository.deleteById(loanId);
+        log.info("Successfully deleted the loan by id "+loanId);
+    }
+
     /**
      * Utility method to extract authenticated user from SecurityContext
      */

@@ -35,4 +35,10 @@ public class LoanController {
         LoanDTO createdLoan = loanService.createLoan(loanDTO);
         return ResponseEntity.status(HttpStatus.CREATED).body(createdLoan); // 201 Created
     }
+
+    @DeleteMapping("/{loanId}")
+    public ResponseEntity<Void> deleteLoan(@PathVariable Long loanId){
+        loanService.deleteLoanById(loanId);
+        return ResponseEntity.ok(null);
+    }
 }

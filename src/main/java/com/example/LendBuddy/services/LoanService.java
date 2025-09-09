@@ -15,4 +15,6 @@ public interface LoanService {
     LoanDTO getLoanById(Integer loanId);
 
     LoanDTO createLoan(LoanDTO loanDTO);
+
+    void deleteLoanById(Long loanId);
 }
